@@ -4,22 +4,22 @@
 		xmlns:h="http://java.sun.com/jsf/html">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Insert title here</title>
+<title>NAC2Sem</title>
 </head>
 <h:body>
-<h:form>
 
-
-</h:form>
 
 <fieldset>
-<legend>Assinatura de Plano de Saude</legend>
-Nome:<h:inputText/><br/>
-Sobrenome:<h:inputText/><br/>
-Cpf:<h:inputText/><br/>
-Histórico Médico:<br/>
-<h:inputTextarea/><br/>
-<h:commandButton value="Assinar" action="#{planosSaudeBean.assinar}"/>
+<legend>Login</legend>
+<h:form>
+Customer ID:
+<h:inputText value="#{bakingBean.customerId}"/>
+<br/>
+Password:
+<h:inputSecret value="#{bakingBean.password}"/>
+<br/>
+<h:commandButton value="Login" action="#{bakingBean.showBalance}"/>
+</h:form>
 </fieldset>
 </h:body>
 </html>
