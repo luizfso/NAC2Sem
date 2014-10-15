@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.nac2sem.bean.Cliente;
+import br.com.nac2sem.beans.Cliente;
 import br.com.nac2sem.factory.ConnectionFactory;
 
 public class ClienteDAO {
@@ -19,7 +19,7 @@ public class ClienteDAO {
 		String sql = "insert into pessoa values(?,?,?)";
 		
 		PreparedStatement stmt = conn.prepareStatement(sql);
-		stmt.setString(1, c.getNome());
+		stmt.setString(1, c.getNomeCliente());
 		stmt.setInt(2, c.getIdade());
 		stmt.setDouble(3, c.getSalario());
 		
@@ -54,7 +54,7 @@ public class ClienteDAO {
 		ArrayList<Cliente> pessoas = new ArrayList<Cliente>();
 		
 		while(rs.next()){
-			Clinete c = new Cliente();
+			Cliente c = new Cliente();
 			c.setNome(rs.getString("nome"));
 			c.setIdade(rs.getInt("idade"));
 			c.setSalario(rs.getDouble("salario"));

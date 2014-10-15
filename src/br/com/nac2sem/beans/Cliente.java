@@ -1,5 +1,6 @@
 package br.com.nac2sem.beans;
 
+/*
 public class Cliente {
 	private String nomeCliente;
 	private Integer contaCorrente;
@@ -52,5 +53,23 @@ public class Cliente {
 		this.agenciaCliente = agenciaCliente;
 	}
 	
+}
+*/
+
+public class Cliente {
+	  private String login;
+	  private String senha;
+	  public String getLogin() {
+	    return login;
+	  }
+	  public void setLogin(String login) {
+	    this.login = login;
+	  }
+	  public String getSenha() {
+	    return senha;
+	  }
+	  public void setSenha(String senha) {
+	    this.senha = senha;
+	  }
 }
 

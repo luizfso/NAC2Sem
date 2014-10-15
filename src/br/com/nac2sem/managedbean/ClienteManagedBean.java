@@ -1,5 +1,6 @@
 package br.com.nac2sem.managedbean;
 
+/*
 import java.sql.SQLException;
 import java.util.List;
 
@@ -94,4 +95,38 @@ public class ClienteManagedBean {
 		
 	}
 	
+}
+*/
+
+import java.sql.SQLException;
+import java.util.List;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+
+import br.com.nac2sem.beans.Cliente;
+import br.com.nac2sem.DAO.ClienteDAO;
+
+@ManagedBean
+@SessionScoped
+public class ClienteManagedBean {
+  private Cliente cliente = new Cliente();
+
+  public String doEfetuarLogin() {
+
+    if("sakurai".equals(cliente.getLogin()) &&
+
+       "123".equals(cliente.getSenha())) {
+      /* Se escrever o login e senha correto então vai para a tela principal do sistema. */
+      return "principal";
+    }
+    //Caso erre o login ou senha fica na mesma tela.
+    return null;
+  }
+  public Cliente getCliente() {
+    return cliente;
+  }
+  public void setUsuario(Cliente cliente) {
+    this.cliente = cliente;
+  }
 }
