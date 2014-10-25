@@ -1,46 +1,74 @@
-<!--  <?xml version="1.0" encsoding="UTF-8" ?>
+<?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-		xmlns:h="http://java.sun.com/jsf/html">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>NAC2Sem</title>
-</head>
+		xmlns:h="http://xmlns.jcp.org/jsf/html"
+		xmlns:f="http://xmlns.jcp.org/jsf/core"
+		xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+		
+<f:view locale="#{facesContext.externalContext.requestLocale}">
+
+<h:head>
+	<link href="css/bootstrap.min.css" rel="stylesheet" />
+	<link href="css/bootstrap.css" rel="stylesheet" />
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>#{msg.tituloCabecalho} - #{msg.tituloLogin}</title>
+</h:head>
+
 <h:body>
-<fieldset>
-<legend>Login</legend>
-<h:form>
-Customer ID:
-<h:inputText value="#{bakingBean.customerId}"/>
-<br/>
-Password:
-<h:inputSecret value="#{bakingBean.password}"/>
-<br/>
-<h:commandButton value="Login" action="#{bakingBean.showBalance}"/>
-</h:form>
-</fieldset>
+
+<div class="container">
+	<div class="page-header">
+		<h2 align="center">#{msg.tituloLogin}</h2>
+	</div>
+		
+	<div class="col-sm-6 col-sm-offset-4">
+		<h:form class="form-horizontal">
+			<label for="agencia" class="col-sm-2 control-label">#{msg.labelAgencia}</label>
+			<div class="col-sm-9">
+				<div class="col-sm-6">
+					<h:inputText 
+						value="#{loginMB.agencia}" 
+						class="form-control" 
+						id="agencia" 
+						p:placeholder="#{msg.msgAgencia}" 
+						required="true"
+						requiredMessage="#{msg.msgAgencia}">
+					</h:inputText>
+				</div>
+				<h:message for="agencia" styleClass="erro"/>
+			</div>
+			
+			<br/><br/>
+			<label for="agencia" class="col-sm-2 control-label">#{msg.labelConta}</label>
+			<div class="col-sm-9">
+				<div class="col-sm-6">
+				<h:inputText 
+					value="#{loginMB.conta}" 
+					class="form-control" 
+					id="conta" 
+					p:placeholder="#{msg.msgConta}" 
+					required="true"
+					requiredMessage="#{msg.msgConta}">
+				</h:inputText>
+				</div>
+				<h:message for="conta" styleClass="erro"/>
+			</div>
+			
+			<br/><br/><br/>
+			<div class="col-sm-3 col-sm-offset-3">
+				<h:commandButton styleClass="btn btn-primary" value="#{msg.botaoLogin}" action="#{loginMB.verificarConta}" />
+			</div>
+			
+			<br/><br/><br/>
+			<div class="col-sm-7 col-sm-offset-2">
+				<h:outputText styleClass="erro" value="#{loginMB.msg}"/>
+			</div>
+		</h:form>
+	</div>
+</div>
+
+<script src="js/bootstrap.min.js"></script>
+
 </h:body>
-</html>
--->
-
-<?xml version="1.0" encsoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-		xmlns:h="http://java.sun.com/jsf/html">
-    <h:head>
-        <title>Login Web</title>
-    </h:head>
-    <h:body>
-      <h:form id="formLogin">
-        <h1><h:outputText id="bemVindo" value="Bem vindo(a) ao sistema."/></h1>
-        <h:panelGrid id="gridLoginSenha" columns="2">
-          <h:outputText id="loginLabel" value="Login:"/>
-          <h:inputText id="login" value=""/>
-          <h:outputText id="senhaLabel" value="Senha:"/>
-          <h:inputSecret id="senha" value=""/>
-        </h:panelGrid>
-        <h:commandButton id="botao" value="Entrar"/>
-      </h:form>
-    </h:body>
-
+</f:view>
 </html>

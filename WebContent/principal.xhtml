@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://xmlns.jcp.org/jsf/html"
+		xmlns:f="http://xmlns.jcp.org/jsf/core"
+		xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+		xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+		
+<f:view locale="#{facesContext.externalContext.requestLocale}">
+
+<h:head>
+	<link href="css/bootstrap.min.css" rel="stylesheet" />
+	<link href="css/bootstrap.css" rel="stylesheet" />
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>#{msg.tituloCabecalho} - #{msg.tituloHome}</title>
+</h:head>
+
+<h:body>
+
+<h:panelGroup rendered="#{sessaoMB.isLogado}">
+<div class="container">
+	<div class="row">
+		<div class="page-header">
+			<h2 align="center">#{msg.tituloHome}</h2>
+		</div>
+		
+		<h:form>
+			<br/>
+			<div class="col-sm-3">
+				<div class="list-group">
+					<h:commandLink styleClass="list-group-item active" value="#{msg.botaoHome}" action="principal" />
+					<h:commandLink styleClass="list-group-item" value="#{msg.botaoCadTerceiro}" action="cadastroTerceiros" />
+					<h:commandLink styleClass="list-group-item" value="#{msg.botaoSaque}" action="sacar" />
+					<h:commandLink styleClass="list-group-item" value="#{msg.botaoDeposito}" action="depositar" />
+					<h:commandLink styleClass="list-group-item" value="#{msg.botaoTransferencia}" action="transferir" />
+					<h:commandLink styleClass="list-group-item" rendered="#{loginMB.isContaCorrente}" value="#{msg.botaoPagamento}" action="pagar" />
+					<h:commandLink styleClass="list-group-item" value="#{msg.botaoExtrato}" action="extrato" />
+					<br/>
+					<h:commandLink styleClass="list-group-item" value="#{msg.botaoLogout}" action="#{loginMB.efetuarLogout}" />
+				</div>
+			</div>
+		</h:form>
+		
+		<div class="col-sm-8 col-sm-offset-1">
+			<p>#{msg.msgSaudacao}, #{loginMB.cliente.nome}</p>
+			<p>
+				#{msg.labelSaldo}:
+				<h:outputText value="#{loginMB.contaBancaria.saldo}">
+					<f:convertNumber type="currency"/>
+				</h:outputText>
+			</p>
+			
+			<br/>
+			<h2>#{msg.tituloUltLancs}</h2>
+			<table class="table table-striped">
+				<tr>
+					<td align="center"><b>#{msg.labelData}</b></td>
+					<td align="center"><b>#{msg.labelOperacao}</b></td>
+					<td align="center"><b>#{msg.labelValor}</b></td>
+					<td align="center"><b>#{msg.labelAgencia}</b></td>
+					<td align="center"><b>#{msg.labelConta}</b></td>
+				</tr>
+				
+				<ui:repeat var="ultLancs" value="#{loginMB.ultimosLanc}">
+				<tr>
+					<td align="center">
+						<h:outputText value="#{ultLancs.data}">
+							<f:convertDateTime pattern="dd/MM/yyyy"/>
+						</h:outputText>
+					</td>
+					<td align="center">#{ultLancs.operacao.descricao}</td>
+					<td align="center">
+						<h:outputText value="#{ultLancs.valor}">
+							<f:convertNumber type="currency"/>
+						</h:outputText>
+					</td>
+					<td align="center">#{ultLancs.contaDestino.agencia}</td>
+					<td align="center">#{ultLancs.contaDestino.conta}</td>
+				</tr>
+				</ui:repeat>
+			</table>
+		</div>
+	</div>
+</div>
+</h:panelGroup>
+
+<h:panelGroup rendered="#{!sessaoMB.isLogado}" styleClass="erro" style="margin: 20px">
+<div class="container">
+	<h:form class="form-horizontal">
+		<div class="col-sm-4 col-sm-offset-5">
+			<div class="col-sm-10">
+				<h:outputText value="#{msg.msgLogin}"/>
+			</div>
+			
+			<br/><br/>
+			<div class="col-sm-7 col-sm-offset-1">
+				<h:commandButton styleClass="btn btn-danger" value="#{msg.botaoLogin}" action="login"/>
+			</div>
+		</div>
+	</h:form>
+</div>
+</h:panelGroup>
+	
+</h:body>
+
+</f:view>
+</html>
